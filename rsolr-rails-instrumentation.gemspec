@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "RSolr instrumentation for Rails"
   spec.description   = "RSolr instrumentation for Rails"
-  #spec.homepage      = ""
+  spec.homepage      = "https://github.com/kml/rsolr-rails-instrumentation"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
