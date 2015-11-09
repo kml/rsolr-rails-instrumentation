@@ -6,9 +6,9 @@ module Rsolr
       class LogSubscriber < ActiveSupport::LogSubscriber
         def query(event)
           request = event.payload[:request]
-          response = event.payload[:response].with_indifferent_access
+          response = event.payload[:response]
 
-          query_time_ms = response[:responseHeader][:QTime]
+          query_time_ms = response["responseHeader"]["QTime"]
 
           Runtime.runtime += event.duration
           Runtime.query_count += 1
@@ -18,7 +18,7 @@ module Rsolr
 
           method = request[:method]
           uri = request[:uri]
-          num_found = response[:response][:numFound]
+          num_found = response["response"]["numFound"]
 
           debug "SOLR: #{method.to_s.upcase} #{uri} numFound: #{num_found} QTime: #{format_duration(query_time_ms)} QUERY_COUNT: #{Runtime.query_count}"
         end
